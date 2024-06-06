@@ -12,7 +12,9 @@ isInteger(3).
 % Anything not in this file is false.
 
 % procedure areEqual/2
-areEqual(1, 1). % fact
+areEqual(A, B) :- % rule
+    A = B.
+% areEqual(X, X).
 
 % "consult" a file - load it in
 
@@ -32,7 +34,21 @@ personLikes(bob, pizza).
 personLikes(bob, burger).
 personLikes(bob, salad).
 personLikes(bob, milk).
+personLikes(bill, Food) :-
+    isServedWarm(Food).
+personLikes(janet, Food) :-
+    personLikes(alice, Food),
+    personLikes(bob, Food).
+personLikes(mel, Food) :-
+    personLikes(janet, Food).
+personLikes(mel, yogurt).
 
+%% personLikes(mel, Food) :-
+%%     personLikes(janet, Food); Food = yogurt.
+%% personLikes(mel, Food) :-
+%%     personLikes(janet, Food).
+%% personLikes(mel, yogurt).
+    
 aliceLikes(pizza).
 aliceLikes(burger).
 aliceLikes(burrito).
@@ -45,4 +61,7 @@ bobLikes(milk).
 
 % rules do computation
 % rules can be recursive
-% DO 6 AND 7 ON HANDOUT
+
+between0and10(X) :-
+    X >= 0,
+    X =< 10.
