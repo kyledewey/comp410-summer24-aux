@@ -22,10 +22,16 @@ factorial(N, Output) :-
     factorial(NMinusOne, Result),
     Output is Result * N.
 
+% [0, 5]
+% Call 1: First Rule
+% Call 1: Second Rule
+%   Call 2: First Rule
+%   Call 2: Second Rule
 % myBetween: Low, High, Result
-myBetween(Low, High, Low) :-
+% [3, 2]
+myBetween(Low, High, Low) :- % [0, 5] ==> 0 is an answer
     Low =< High.
-myBetween(Low, High, X) :-
+myBetween(Low, High, X) :- % [0, 5] ==> recursive call with [1, 5]
     Low < High,
     Next is Low + 1,
     myBetween(Next, High, X).
