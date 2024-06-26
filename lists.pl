@@ -47,3 +47,10 @@ sublist([Head|Tail], [Head|Sublist]) :- % keep Head
     sublist(Tail, Sublist).
 sublist([_|Tail], Sublist) :- % discard Head
     sublist(Tail, Sublist).
+
+
+myLength([], 0).
+myLength([_|T], Len) :-
+    myLength(T, TailLen),
+    Len is TailLen + 1.
+
